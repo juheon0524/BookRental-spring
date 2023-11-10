@@ -1,0 +1,7 @@
+package com.ezen.polymorphism;
+
+public class TvUser {
+	TV tv = new SamsungTV();
+	
+	
+}

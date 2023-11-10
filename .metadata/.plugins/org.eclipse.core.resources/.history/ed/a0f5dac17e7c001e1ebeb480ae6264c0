@@ -1,0 +1,34 @@
+package org.erock.persistence;
+
+import java.sql.DriverManager;
+
+import org.junit.Test;
+
+import com.sun.jdi.connect.spi.Connection;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class JDBCTests {
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		@Test
+		public void testConnection() {
+			try {
+				Connection con = DriverManager.getConnection(
+						"jdbc:oracle:thin:@localhost:1521:xe",
+						"book_ex",
+						"boo_ex"
+						);
+				log.info("con : " + con);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+}

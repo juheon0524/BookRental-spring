@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<bean id="tv" class="com.ezen.polymorphism.SamsungTV" init-method="initMethod"
+	 destroy-method="poweroff" lazy-init="true" scope="prototype">
+	</bean> -->
+	
+<!-- 		lazy-init="true" 는 객체를 생성하지 않고, 필요한 시점에 생성함.
+		scope="prototype" 원래 싱글톤 패턴이었던 객체를 여러개 생성시킴. -->
+		
+	<bean id="tv1" class="com.ezen.polymorphism.SamsungTV" >
+		<constructor-arg ref="sony"></constructor-arg>
+	</bean>
+	<bean id="tv2" class="com.ezen.polymorphism.LgTV" ></bean>
+	<bean id="sony" class="com.ezen.polymorphism.SonySpearker">
+		
+	</bean>
+</beans>

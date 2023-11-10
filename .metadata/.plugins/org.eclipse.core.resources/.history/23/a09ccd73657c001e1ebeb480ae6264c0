@@ -1,0 +1,18 @@
+package com.ezen.polymorphism;
+
+public class SonySpearker implements Spearker {
+
+	@Override
+	public void volumeUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}

@@ -1,0 +1,24 @@
+package com.ezen.polymorphism;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class SonySpearker implements Spearker {
+	public SonySpearker() {
+		System.out.println("½î´Ï½ºÇÇÄ¿ »ý¼ºÀÚ");
+	}
+	
+	@Override
+	public void volumeUp() {
+		System.out.println("sony º¼·ý¾÷");
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("sony º¼·ý´Ù¿î");
+		
+	}
+	
+	
+}

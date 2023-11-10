@@ -1,0 +1,14 @@
+package com.ezen.polymorphism;
+public class AppleSpearker implements Spearker {
+	@Override
+	public void volumeUp() {
+		System.out.println("apple º¼·ý¾÷");
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("apple º¼·ý´Ù¿î");
+		
+	}
+}

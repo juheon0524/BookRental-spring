@@ -1,0 +1,12 @@
+package com.ezen.polymorphism;
+
+public class TvUser {
+	public static void main(String[] args) {
+		TV tv = new SamsungTV();
+		tv.poweron();
+		tv.poweroff();
+		tv.volumeUp();
+	}
+	
+	
+}

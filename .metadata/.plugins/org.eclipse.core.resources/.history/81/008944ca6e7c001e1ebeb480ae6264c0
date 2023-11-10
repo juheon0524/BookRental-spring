@@ -1,0 +1,23 @@
+package com.ezen.polymorphism;
+
+import org.springframework.stereotype.Component;
+
+@Component("apple")
+public class AppleSpearker implements Spearker {
+	
+	public AppleSpearker() {
+		System.out.println("apple스피커 생성자");
+	}
+	
+	@Override
+	public void volumeUp() {
+		System.out.println("apple 볼륨업");
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("apple 볼륨다운");
+		
+	}
+}

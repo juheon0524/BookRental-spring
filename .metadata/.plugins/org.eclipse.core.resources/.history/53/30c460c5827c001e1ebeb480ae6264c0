@@ -1,0 +1,5 @@
+package org.erock.persistence;
+
+public class DataSourceTests {
+
+}

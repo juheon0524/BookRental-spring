@@ -1,0 +1,39 @@
+package com.ezen.polymorphism;
+
+public class SamsungTV implements TV{
+	
+	private Spearker spearker;
+	
+	public SamsungTV() {
+		System.out.println("SamsungTV 생성자");
+	}
+	
+	public void initMethod() {
+		System.out.println("생성자 initMethod ==> 초기화 문장 기입");
+	}
+	
+	@Override
+	public void poweron() {
+		System.out.println("SamsungTV powerOn");		
+	}
+
+	@Override
+	public void poweroff() {
+		System.out.println("SamsungTV powerOff");	
+		
+	}
+
+	@Override
+	public void volumeUp() {
+		System.out.println("SamsungTV volumeUp");	
+	}
+
+	@Override
+	public void volumeDown() {
+		spearker = new SonySpearker();
+		spearker.volumeUp();
+//		System.out.println("SamsungTV volumeDown");	
+		
+	}
+
+}

@@ -1,0 +1,30 @@
+package com.ezen.polymorphism;
+
+public class SamsungTV implements TV{
+	public SamsungTV() {
+		System.out.println("SamsungTV »ý¼ºÀÚ");
+	}
+	@Override
+	public void poweron() {
+		System.out.println("SamsungTV powerOn");		
+	}
+
+	@Override
+	public void poweroff() {
+		System.out.println("SamsungTV powerOff");	
+		
+	}
+
+	@Override
+	public void volumeUp() {
+		System.out.println("SamsungTV volumeUp");	
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		System.out.println("SamsungTV volumeDown");	
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+import com.ezen.polymorphism.Spearker;
+
+public class AppleSpearker implements Spearker {
+
+}

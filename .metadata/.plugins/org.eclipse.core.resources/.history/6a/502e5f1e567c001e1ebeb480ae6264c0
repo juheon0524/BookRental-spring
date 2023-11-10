@@ -1,0 +1,29 @@
+package com.ezen.polymorphism;
+
+public class SamsungTV implements TV{
+
+	@Override
+	public void poweron() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void poweroff() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void volumeUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
