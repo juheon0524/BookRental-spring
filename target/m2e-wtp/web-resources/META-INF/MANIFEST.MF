@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
-Built-By: M22
-Build-Jdk: 11.0.0.1
+Built-By: cello88
+Build-Jdk: 11.0.19
 Created-By: Maven Integration for Eclipse
 
-=======
-Manifest-Version: 1.0
-Built-By: M22
-Build-Jdk: 11.0.0.1
-Created-By: Maven Integration for Eclipse
-
->>>>>>> 3db49983efad1a7683607830dfb5eee77b884ef5
