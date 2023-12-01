@@ -28,11 +28,11 @@ import lombok.ToString;
 @Builder
 public class BookReportVO {
 
-	public String reportid;
-	public String memberid;
-	public String title;
-	public String content;
-	public int score;
-	public String createdate;
-	public int readcnt;
+	private String reportid;
+	private String memberid;
+	private String title;
+	private String content;
+	private int score;
+	private String createdate;
+	private int readcnt;
 }

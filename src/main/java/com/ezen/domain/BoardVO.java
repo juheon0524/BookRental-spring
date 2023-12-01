@@ -26,10 +26,10 @@ import lombok.ToString;
 @Builder
 public class BoardVO {
 
-	public int boardid;
-	public String btitle;
-	public String bcontent;
-	public String createdate;
-	public int readcnt;
-	public String memberid;
+	private int boardid;
+	private String btitle;
+	private String bcontent;
+	private String createdate;
+	private int readcnt;
+	private String memberid;
 }

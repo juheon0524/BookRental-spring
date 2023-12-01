@@ -21,7 +21,7 @@ import lombok.ToString;
 @Builder
 public class GenreVO {
 
-	public String genrecode;
-	public String genredesc;
-	public String genredetail;
+	private String genrecode;
+	private String genredesc;
+	private String genredetail;
 }

@@ -31,13 +31,13 @@ import lombok.ToString;
 @Builder
 public class RentalListVO {
 
-	public String rentallistid;
-	public String rentdate;
-	public String plannedreturndate;
-	public String isbn;
-	public String memberid;
-	public String subscrlistid;
-	public String actualreturndate;
-	public String deliverydate;
-	public String deliveryinvno;
+	private String rentallistid;
+	private String rentdate;
+	private String plannedreturndate;
+	private String isbn;
+	private String memberid;
+	private String subscrlistid;
+	private String actualreturndate;
+	private String deliverydate;
+	private String deliveryinvno;
 }

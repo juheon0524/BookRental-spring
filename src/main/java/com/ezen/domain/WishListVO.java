@@ -24,8 +24,8 @@ import lombok.ToString;
 @Builder
 public class WishListVO {
 
-	public String wishlistid;
-	public String isbn;
-	public String memberid;
-	public String createdate;
+	private String wishlistid;
+	private String isbn;
+	private String memberid;
+	private String createdate;
 }

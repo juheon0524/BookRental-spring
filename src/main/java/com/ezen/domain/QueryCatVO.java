@@ -20,6 +20,6 @@ import lombok.ToString;
 @Builder
 public class QueryCatVO {
 
-	public String categoryid;
-	public String categorydesc;
+	private String categoryid;
+	private String categorydesc;
 }

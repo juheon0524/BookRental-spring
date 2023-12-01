@@ -31,12 +31,12 @@ import lombok.ToString;
 @Builder
 public class BookDonationVO {
 
-	public String donateid;
-	public String isbn;
-	public String memberid;
-	public String donatedate;
-	public int donatebookcnt;
-	public String procdate;
-	public String subscrlistid;
-	public String adminmemberid;
+	private String donateid;
+	private String isbn;
+	private String memberid;
+	private String donatedate;
+	private int donatebookcnt;
+	private String procdate;
+	private String subscrlistid;
+	private String adminmemberid;
 }

@@ -28,10 +28,10 @@ import lombok.ToString;
 @Builder
 public class ReturnRequestVO {
 	
-	public String returnrequestid;
-	public String rentallistid;
-	public String memberid;
-	public String isbn;
-	public String requestdate;
-	public String actualreturndate;
+	private String returnrequestid;
+	private String rentallistid;
+	private String memberid;
+	private String isbn;
+	private String requestdate;
+	private String actualreturndate;
 }

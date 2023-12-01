@@ -34,20 +34,20 @@ import lombok.ToString;
 @Builder
 public class MemberVO {
 
-	public String memberid;
-	public String membername;
-	public String postalcode;
-	public String postaladdress;
-	public String detailaddress;
-	public String mphone;
-	public String birthdate;
-	public String passcode;
-	public String joindate;
-	public String memberflag;
-	public String email;
-	public String penaltysdate;
-	public String penaltyedate;
-	public String penaltyrentalid;
-	public String statuscode;
-	public String lastlogindate;
+	private String memberid;
+	private String membername;
+	private String postalcode;
+	private String postaladdress;
+	private String detailaddress;
+	private String mphone;
+	private String birthdate;
+	private String passcode;
+	private String joindate;
+	private String memberflag;
+	private String email;
+	private String penaltysdate;
+	private String penaltyedate;
+	private String penaltyrentalid;
+	private String statuscode;
+	private String lastlogindate;
 }

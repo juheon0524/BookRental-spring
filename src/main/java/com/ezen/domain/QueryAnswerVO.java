@@ -30,13 +30,13 @@ import lombok.ToString;
 @Builder
 public class QueryAnswerVO {
 
-	public int queryid;
-	public String memberid;
-	public String querydate;
-	public String categoryid;
-	public String title;
-	public String content;
-	public int replyqueryid;
-	public int replylev;
-	public int replyseq;
+	private int queryid;
+	private String memberid;
+	private String querydate;
+	private String categoryid;
+	private String title;
+	private String content;
+	private int replyqueryid;
+	private int replylev;
+	private int replyseq;
 }

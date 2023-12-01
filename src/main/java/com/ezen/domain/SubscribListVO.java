@@ -26,10 +26,10 @@ import lombok.ToString;
 @Builder
 public class SubscribListVO {
 
-	public String subscrlistid;
-	public String subscrid;
-	public String memberid;
-	public String selldate;
-	public String subscrstartdate;
-	public String subscrenddate;
+	private String subscrlistid;
+	private String subscrid;
+	private String memberid;
+	private String selldate;
+	private String subscrstartdate;
+	private String subscrenddate;
 }

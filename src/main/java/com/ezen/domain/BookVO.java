@@ -35,20 +35,20 @@ import lombok.ToString;
 @Builder
 public class BookVO {
 
-	public String isbn;
-	public String title;
-	public String genrecode;
-	public String genrecrawled;
-	public String author;
-	public String publisher;
-	public String publisheddate;
-	public int totbookcnt;
-	public int rentedbookcnt;
-	public int curbookcnt;
-	public int price;
-	public int cumrentalcnt;
-	public String registereddate;
-	public String memberid;
-	public String bookimgurl;
-	public String bookcontent;
+	private String isbn;
+	private String title;
+	private String genrecode;
+	private String genrecrawled;
+	private String author;
+	private String publisher;
+	private String publisheddate;
+	private int totbookcnt;
+	private int rentedbookcnt;
+	private int curbookcnt;
+	private int price;
+	private int cumrentalcnt;
+	private String registereddate;
+	private String memberid;
+	private String bookimgurl;
+	private String bookcontent;
 }

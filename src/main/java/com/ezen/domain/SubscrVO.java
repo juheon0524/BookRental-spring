@@ -29,14 +29,14 @@ import lombok.ToString;
 @Builder
 public class SubscrVO {
 
-	public String subscrid;
-	public String subscrname;
-	public int price;
-	public String salefromdate;
-	public String saletodate;
-	public int subscrperiod;
-	public String memberid;
-	public String registereddate;
-	public int allowedbookcnt;
-	public String purpose;
+	private String subscrid;
+	private String subscrname;
+	private int price;
+	private String salefromdate;
+	private String saletodate;
+	private int subscrperiod;
+	private String memberid;
+	private String registereddate;
+	private int allowedbookcnt;
+	private String purpose;
 }
