@@ -26,10 +26,10 @@ import lombok.ToString;
 @Builder
 public class RatingsVO {
 
-	public String ratingsid;
-	public String isbn;
-	public String memberid;
-	public String writedate;
-	public String content;
-	public int score;
+	private String ratingsid;
+	private String isbn;
+	private String memberid;
+	private String writedate;
+	private String content;
+	private int score;
 }
