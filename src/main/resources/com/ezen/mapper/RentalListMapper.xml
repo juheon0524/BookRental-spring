@@ -4,46 +4,79 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.mapper.RentalListMapper">
 	
-	<!-- com.ezen.domain 패키지에 있는 RentalListVO 클래스를 가리키도록 설정 -->
-	<typeAliases>
-		<typeAlias alias="RentalListVO"
-			type="com.ezen.domain.RentalListVO" />
-	</typeAliases>
+	
 
-	<!-- 전체 데이터 조회 -->
-	<select id="getList" resultType="RentalListVO">
-		SELECT *
-		FROM rentallist
+	<!-- 전체 데이터 조회 (조인 사용) -->
+	<select id="getList" resultType="com.ezen.domain.RentalListVO">
+	    <![CDATA[
+	    SELECT 
+	        rl.rentallistid,
+	        rl.rentdate,
+	        rl.plannedreturndate,
+	        rl.isbn,
+	        rl.memberid,
+	        rl.subscrlistid,
+	        rl.actualreturndate,
+	        rl.deliverydate,
+	        rl.deliveryinvno,
+	        b.title,
+	        b.bookimgurl 
+	    FROM rentallist rl
+	    LEFT JOIN book b ON rl.isbn = b.isbn
+	    ORDER BY rl.rentdate DESC
+	    ]]>
 	</select>
 
-	<!-- 페이징 처리 -->
-	<select id="getListWithPaging" resultType="RentalListVO"
-		parameterType="Criterial">
-		SELECT *
-		FROM rentallist
-		ORDER BY rentdate DESC
-		LIMIT
-		#{startRow}, #{amount}
+	<!-- 페이징 처리 (조인 사용) -->
+	<select id="getListWithPaging" resultType="com.ezen.domain.RentalListVO" parameterType="com.ezen.domain.Criterial">
+	    <![CDATA[
+	    SELECT 
+	        rl.rentallistid,
+	        rl.rentdate,
+	        rl.plannedreturndate,
+	        rl.isbn,
+	        rl.memberid,
+	        rl.subscrlistid,
+	        rl.actualreturndate,
+	        rl.deliverydate,
+	        rl.deliveryinvno,
+	        b.title,
+	        b.bookimgurl 
+	    FROM rentallist rl
+	    LEFT JOIN book b ON rl.isbn = b.isbn
+	    ORDER BY rl.rentdate DESC
+	    LIMIT #{skip}, #{amount}
+	    ]]>
 	</select>
 
-	<!-- rentallistid로 데이터 조회 -->
-	<select id="read" resultType="RentalListVO"
-		parameterType="String">
-		SELECT *
-		FROM rentallist
-		WHERE rentallistid =
-		#{rentallistid}
+	<!-- rentallistid로 데이터 조회 (조인 사용) -->
+	<select id="read" resultType="com.ezen.domain.RentalListVO" parameterType="String">
+	    SELECT 
+	        rl.rentallistid,
+	        rl.rentdate,
+	        rl.plannedreturndate,
+	        rl.isbn,
+	        rl.memberid,
+	        rl.subscrlistid,
+	        rl.actualreturndate,
+	        rl.deliverydate,
+	        rl.deliveryinvno,
+	        b.title,
+	        b.bookimgurl 
+	    FROM rentallist rl
+	    LEFT JOIN book b ON rl.isbn = b.isbn
+	    WHERE rl.rentallistid = #{rentallistid}
 	</select>
 
 	<!-- rentallistid로 데이터 삭제 -->
-	<delete id="delete" parameterType="String">
+	<delete id="delete">
 		DELETE FROM rentallist
 		WHERE
 		rentallistid = #{rentallistid}
 	</delete>
 
 	<!-- 데이터 등록 -->
-	<insert id="insert" parameterType="RentalListVO">
+	<insert id="insert">
 		INSERT INTO rentallist
 		(rentdate, plannedreturndate, isbn, memberid, subscrlistid,
 		actualreturndate,
@@ -55,7 +88,7 @@
 	</insert>
 
 	<!-- 데이터 수정 -->
-	<update id="update" parameterType="RentalListVO">
+	<update id="update">
 		UPDATE rentallist
 		SET rentdate
 		= #{rentdate},
@@ -71,23 +104,27 @@
 
 	<!-- 책 보유 수량 여부 확인 -->
 	<select id="checkBook" resultType="int" parameterType="String">
+		<![CDATA[
 		SELECT
 		COUNT(*)
 		FROM book
 		WHERE isbn = #{isbn} AND curbookcnt > 0
+		]]>
 	</select>
 
 	<!-- 구독 권 보유 여부 확인 -->
 	<select id="checkSub" resultType="int" parameterType="String">
+		<![CDATA[
 		SELECT
 		COUNT(*)
 		FROM subscrlist
 		WHERE memberid = #{memberid} AND subscrenddate
 		> NOW()
+		]]>
 	</select>
 
 	<!-- 전체 데이터 수 조회 -->
-	<select id="getTotal" resultType="int" parameterType="Criterial">
+	<select id="getTotal" resultType="int">
 		SELECT
 		COUNT(*)
 		FROM rentallist

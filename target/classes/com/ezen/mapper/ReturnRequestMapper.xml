@@ -7,7 +7,7 @@
 	
 
 	<!-- 전체 데이터 조회 (조인 사용) -->
-	<select id="getList" resultType="com.ezen.domain.RentalListVO">
+	<select id="getList" resultType="com.ezen.domain.ReturnRequestVO">
 	    <![CDATA[
 	    SELECT 
 	        rl.rentallistid,
@@ -28,7 +28,7 @@
 	</select>
 
 	<!-- 페이징 처리 (조인 사용) -->
-	<select id="getListWithPaging" resultType="com.ezen.domain.RentalListVO" parameterType="com.ezen.domain.Criterial">
+	<select id="getListWithPaging" resultType="com.ezen.domain.ReturnRequestVO" parameterType="com.ezen.domain.Criterial">
 	    <![CDATA[
 	    SELECT 
 	        rl.rentallistid,
@@ -50,7 +50,7 @@
 	</select>
 
 	<!-- rentallistid로 데이터 조회 (조인 사용) -->
-	<select id="read" resultType="com.ezen.domain.RentalListVO" parameterType="String">
+	<select id="read" resultType="com.ezen.domain.ReturnRequestVO" parameterType="String">
 	    SELECT 
 	        rl.rentallistid,
 	        rl.rentdate,
@@ -87,46 +87,4 @@
 		#{actualreturndate}, #{deliverydate}, #{deliveryinvno})
 	</insert>
 
-	<!-- 데이터 수정 -->
-	<update id="update">
-		UPDATE rentallist
-		SET rentdate
-		= #{rentdate},
-		plannedreturndate = #{plannedreturndate},
-		isbn = #{isbn},
-		memberid = #{memberid},
-		subscrlistid = #{subscrlistid},
-		actualreturndate = #{actualreturndate},
-		deliverydate = #{deliverydate},
-		deliveryinvno = #{deliveryinvno}
-		WHERE rentallistid = #{rentallistid}
-	</update>
-
-	<!-- 책 보유 수량 여부 확인 -->
-	<select id="checkBook" resultType="int" parameterType="String">
-		<![CDATA[
-		SELECT
-		COUNT(*)
-		FROM book
-		WHERE isbn = #{isbn} AND curbookcnt > 0
-		]]>
-	</select>
-
-	<!-- 구독 권 보유 여부 확인 -->
-	<select id="checkSub" resultType="int" parameterType="String">
-		<![CDATA[
-		SELECT
-		COUNT(*)
-		FROM subscrlist
-		WHERE memberid = #{memberid} AND subscrenddate
-		> NOW()
-		]]>
-	</select>
-
-	<!-- 전체 데이터 수 조회 -->
-	<select id="getTotal" resultType="int">
-		SELECT
-		COUNT(*)
-		FROM rentallist
-	</select>
 </mapper>

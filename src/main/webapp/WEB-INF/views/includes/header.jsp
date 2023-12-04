@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" type="text/css" href="/css/reset.css">
-<link rel="stylesheet" type="text/css" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 <header>
 	<!-- headerTop -->
 	<div class="headerTopWrap">
 		<div class="logo">
-			<a href="index.jsp"><img src="image/logo.png" alt="logoImg"></a>
+			<a href="index.jsp"><img src="/resources/image/logo.png" alt="logoImg"></a>
 		</div>
 		<div class="headerSerchWrap">
 			<div class="headerSerchBox">
@@ -19,7 +19,7 @@
 					</div>
 					<div class="headerSerchBtn">
 						<button type="submit">
-							<img src="image/serch.jpg" alt="serchIcon">
+							<img src="/resources/image/serch.jpg" alt="serchIcon">
 						</button>
 					</div>
 				</form>

@@ -34,4 +34,8 @@ public class ReturnRequestVO {
 	private String isbn;
 	private String requestdate;
 	private String actualreturndate;
+	
+	//join
+	private String title;
+	private String bookimgurl;
 }

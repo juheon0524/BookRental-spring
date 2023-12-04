@@ -2,10 +2,12 @@ package com.ezen.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.domain.Criterial;
 import com.ezen.domain.RentalListVO;
+import com.ezen.mapper.BookMapper;
 import com.ezen.mapper.RentalListMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class RentalListServiceImpl implements RentalListService{
 	
 	private final RentalListMapper rentalListMapper;
 	
+	private final BookMapper bookMapper;
 	
 	@Override
 	public List<RentalListVO> getList(Criterial cri) {
@@ -62,5 +65,6 @@ public class RentalListServiceImpl implements RentalListService{
 	public RentalListVO read(String rentallistid) {
 		 return rentalListMapper.read(rentallistid);
 	}
+  
 
 }

@@ -40,4 +40,8 @@ public class RentalListVO {
 	private String actualreturndate;
 	private String deliverydate;
 	private String deliveryinvno;
+	
+	//join하려고 추가
+	private String title;
+	private String bookimgurl;
 }

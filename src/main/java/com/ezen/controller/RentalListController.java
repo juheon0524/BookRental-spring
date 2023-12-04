@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.domain.Criterial;
@@ -25,7 +26,7 @@ public class RentalListController {
 
 	private final RentalListService rentalListService;
 	
-	@GetMapping("/list")
+	@GetMapping("/rentList")
     public void list(Criterial cri, Model model) {
         log.info("Rental List >> " + cri);
 
@@ -33,12 +34,12 @@ public class RentalListController {
         model.addAttribute("pageMaker", new PageDTO(cri, rentalListService.getTotal(cri)));
     }
 
-    @GetMapping("/register")
+    @GetMapping("/rentRegister")
     @PreAuthorize("isAuthenticated()")
     public void register() {
     }
 
-    @PostMapping("/register")
+    @PostMapping("/rentRegister")
     @PreAuthorize("isAuthenticated()")
     public String register(RentalListVO rental, RedirectAttributes rttr) {
         log.info("Register Rental: " + rental);
@@ -46,18 +47,18 @@ public class RentalListController {
         rentalListService.register(rental);
         rttr.addFlashAttribute("result", rental.getRentallistid());
 
-        return "redirect:/rental/list";
+        return "redirect:/rental/rentList";
     }
 
-    @GetMapping({"/get", "/modify"})
-    public void get(String rentallistid, @ModelAttribute("cri") Criterial cri, Model model) {
+    @GetMapping({"/rentGet", "/rentModify"})
+    public void get(@RequestParam("rentallistid") String rentallistid, @ModelAttribute("cri") Criterial cri, Model model) {
         log.info("/get or modify");
 
         model.addAttribute("rental", rentalListService.read(rentallistid));
     }
 
     @PreAuthorize("principal.username == #rental.memberid")
-    @PostMapping("/remove")
+    @PostMapping("/rentRemove")
     public String remove(String rentallistid, @ModelAttribute("cri") Criterial cri, RedirectAttributes rttr) {
         log.info("Remove Rental: " + rentallistid);
 
@@ -68,11 +69,11 @@ public class RentalListController {
         rttr.addAttribute("pageNum", cri.getPageNum());
         rttr.addAttribute("amount", cri.getAmount());
 
-        return "redirect:/rental/list";
+        return "redirect:/rental/rentList";
     }
 
     @PreAuthorize("principal.username == #rental.memberid")
-    @PostMapping("/modify")
+    @PostMapping("/rentModify")
     public String modify(RentalListVO rental, @ModelAttribute("cri") Criterial cri, RedirectAttributes rttr) {
         log.info("Modify Rental: " + rental);
 
@@ -83,7 +84,7 @@ public class RentalListController {
         rttr.addAttribute("pageNum", cri.getPageNum());
         rttr.addAttribute("amount", cri.getAmount());
 
-        return "redirect:/rental/list";
+        return "redirect:/rental/rentList";
     }
 }
 

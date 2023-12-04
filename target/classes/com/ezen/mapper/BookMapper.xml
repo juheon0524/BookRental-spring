@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.mapper.BookMapper">
+
+	<sql id="criteria">
+		<trim prefix="where (" suffix=")">
+			<foreach collection="typeArr" item="type" separator="or">
+				<if test="type=='T'.toString()">
+					title like concat('%', #{keyword}, '%')
+				</if>
+				<if test="type=='C'.toString()">
+					bookcontent like concat('%', #{keyword}, '%')
+				</if>
+				<if test="type=='A'.toString()">
+					author like concat('%', #{keyword}, '%')
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getListWithPaging" resultType="com.ezen.domain.BookVO">
+		<![CDATA[
+			select *,
+					(select round(avg(score),1) from ratings r 
+				  	where b.isbn = r.isbn group by b.isbn) score  
+			from book b
+		]]>
+			<include refid="criteria"></include>
+		<![CDATA[
+			limit #{skip}, #{amount} 	
+		]]>
+	</select>
+
+	<select id="getListWithPagingByPdate" resultType="com.ezen.domain.BookVO">
+			select *,
+				  	(select round(avg(score),1) from ratings r 
+				  	where b.isbn = r.isbn group by b.isbn) score 	 
+			from book b
+			<include refid="criteria"></include>
+			order by publisheddate desc
+			limit #{skip}, #{amount} 	
+	</select>
+
+	<select id="getListWithPagingByRentalCnt" resultType="com.ezen.domain.BookVO">
+			select *, 
+					(select round(avg(score),1) from ratings r 
+				  	where b.isbn = r.isbn group by b.isbn) score  
+			from book b
+			<include refid="criteria"></include>
+			order by cumrentalcnt desc
+			limit #{skip}, #{amount} 	
+	</select>
+	
+	<select id="getTotalBookCount" resultType="int">
+		select count(*) from book
+		<include refid="criteria"></include>
+	</select>
+	
+	<select id="getList" resultType="com.ezen.domain.BookVO">
+		select * from book
+	</select>
+	
+	<insert id="insertBook">
+		insert into book(isbn, title, genrecode, genrecrawled, author, publisher, publisheddate,
+						totbookcnt, rentedbookcnt, curbookcnt, price, cumrentalcnt, registereddate,
+						memberid, bookimgurl, bookcontent )
+		values(#{isbn}, #{title}, #{genrecode}, #{genrecrawled}, #{author}, #{publisher}, #{publisheddate},
+				#{totbookcnt}, #{rentedbookcnt}, #{curbookcnt}, #{price}, #{cumrentalcnt}, #{registereddate},
+				#{memberid}, #{bookimgurl}, #{bookcontent} )
+			
+	</insert>
+	
+	<select id="read" resultType="com.ezen.domain.BookVO">
+		select *, (select round(avg(score),1) from ratings r 
+				  	where b.isbn = r.isbn group by b.isbn) score
+		 from book b where isbn = #{isbn}
+	</select>
+	
+	<delete id="deleteBook">
+		delete from book where isbn = #{isbn}
+	</delete>
+	
+	<update id="updateBook">
+		update book set
+		title = #{title}, genrecode = #{genrecode}, genrecrawled = #{genrecrawled}, author = #{author}, 
+		publisher = #{publisher}, publisheddate = #{publisheddate}, totbookcnt = #{totbookcnt}, 
+		rentedbookcnt = #{rentedbookcnt}, curbookcnt = #{curbookcnt}, price = #{price}, cumrentalcnt = #{cumrentalcnt}, 
+		registereddate = #{registereddate},	
+		memberid = #{memberid},
+		bookimgurl = #{bookimgurl}, bookcontent = #{bookcontent}
+		where isbn = #{isbn}
+	</update>
+	
+	
+</mapper>
