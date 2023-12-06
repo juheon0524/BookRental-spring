@@ -19,10 +19,6 @@ public class RatingsServiceImpl implements RatingsService {
 	
 	private final RatingsMapper ratingsMapper;
 
-	
-	@Override public List<RatingsVO> getListWithPaging(Criterial cri, String isbn) {
-		log.info("getListWithPaging >> " + isbn + " : " + cri);
-		return ratingsMapper.getListWithPaging(cri, isbn); }
 
 	@Override
 	public RatingsVO get(String ratingsid) {
@@ -43,6 +39,10 @@ public class RatingsServiceImpl implements RatingsService {
 	public int remove(String ratingsid) {
 		return ratingsMapper.deleteRatings(ratingsid);
 	}
+	
+	@Override public List<RatingsVO> getList(Criterial cri, String isbn) {
+		log.info("getListWithPaging >> " + isbn + " : " + cri);
+		return ratingsMapper.getListWithPaging(cri, isbn); }
 
 	@Override
 	public RatingsPageDTO getListPage(Criterial cri, String isbn) {

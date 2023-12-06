@@ -1,18 +1,11 @@
-<%@page import="com.ezen.domain.MemberVO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/resources/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/bookDetailView.css">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
-    <title>도서상세정보</title>
-</head>
-<c:if test="${wishSu == 1}">
+
+<%-- <c:if test="${wishSu == 1}">
 		<script type="text/javascript">
 			alert("이미 추가하신 도서입니다.")
 		</script>
@@ -27,8 +20,8 @@
         }
     </script>
 </c:if>
-<body>
-<%@ include file="../includes//header.jsp" %>
+ --%>
+<%@ include file="../includes/header.jsp" %>
     <div class="shareContainer">
         <div class="shareImg" style="background: url(/resources/image/svisual_img.png);"></div>
         <div class="shareContentWrap">
@@ -54,7 +47,7 @@
                 </div>
 
                 <div class="shareContent">
-                    <form class="bookDetailWrap">
+                    <div class="bookDetailWrap">
                         <div class="bookDetailBox">
                             <div class="bookDetailImgBox">
                     			<c:choose>
@@ -101,53 +94,97 @@
                             </c:forEach> --%>
                         </div>
 
-
 						<!--         댓글          -->
 						
-						    <div class="row">
-						        <div class="col-lg-12">
-						            <div class="panel panel-default">
-						                <div class="panel-heading">
-						                    <i class="fa fa-comments fa-fw"></i>
-						                    
-						                    <!-- <sec:authorize access="isAuthenticated()">
-							                    <button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Reply</button>
-						                    </sec:authorize> -->
-						                    
-						                </div>
-						                <!-- /.panel-heading -->
-						                <div class="panel-body">
-											<ul class="chat">
-												<li class="left clearfix" data-ratingsid='12'>
-													<div>
-														<div class="header">
-															<br>
-															<strong class="primary-font">user00</strong>&nbsp;&nbsp;,
-															<strong class="primary-font">5</strong>&nbsp;&nbsp;,
-															<small class="pull-right text-muted">2023-11-16 11:20</small>
-														</div>
-														<p>Goog job!</p>
+					    <div class="row">
+					        <div class="col-lg-12">
+					            <div class="panel panel-default">
+					                <div class="panel-heading">
+					                    <i class="fa fa-comments fa-fw"></i>100자평
+					                    
+					                    <!-- <sec:authorize access="isAuthenticated()"> -->
+						                    <button id="addRatingsBtn" class="btn btn-primary btn-xs pull-right">100자평 남기기</button>
+					                    <!-- </sec:authorize> -->
+					                    
+					                </div>
+					                <!-- /.panel-heading -->
+					                <div class="panel-body">
+										<ul class="chat">
+											<li class="left clearfix" data-ratingsid='12'>
+												<div>
+													<div class="header">
+														<br>
+														<strong class="primary-font">user00</strong>&nbsp;
+														<strong class="primary-font">5</strong>&nbsp;
+														<small class="pull-right text-muted">2023-11-16 11:20</small>
 													</div>
-												</li>
-											</ul>	
-						                </div>
-						                <!-- /.panel-body -->
-						                
-						                <div class="panel-footer">
-						                
-						                </div>
-						                
-						            </div>
-						            <!-- /.panel -->
-						        </div>
-						        <!-- /.col-lg-12 -->
-						    </div>
+													<p>Goog job!</p>
+												</div>
+											</li>
+										</ul>	
+					                </div>
+					                <!-- /.panel-body -->
+					                
+					                <div class="panel-footer">
+					                
+					                </div>
+					                
+					            </div>
+					            <!-- /.panel -->
+					        </div>
+					        <!-- /.col-lg-12 -->
+					    </div>
 						<!--         /댓글          -->
 
+						<!-- 모달창 추가 -->
+						<div class="modal" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">100자평 남기기</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+
+									<!-- Modal body -->
+									<div class="modal-body">
+										<div class="form-group">
+											<label>100자평</label> <input class="form-control" name="content"
+												value="New Ratings!!!">
+										</div>
+										<div class="form-group">
+											<label>평점</label> <input class="form-control"
+												name="score" value="score">
+										</div>
+										<div class="form-group">
+											<label>작성자</label> <input class="form-control"
+												name="memberid" value="memberid">
+										</div>
+										<div class="form-group">
+											<label>작성일</label> <input class="form-control"
+												name="writedate" value="">
+										</div>
+									</div>
+
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<button type="button" id="modalRegisterBtn"
+											class="btn btn-primary">등록</button>
+										<button type="button" id="modalModBtn" class="btn btn-warning">수정</button>
+										<button type="button" id="modalRemoveBtn"
+											class="btn btn-danger">삭제</button>
+										<button type="button" id="modalCloseBtn" class="btn btn-info"
+											data-dismiss="modal">종료</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- /모달창 추가 -->
 
 
-
-                        <div class="bookDetailBtnBox">
+						<div class="bookDetailBtnBox">
                         
                         <c:choose>
                         	<c:when test="${loginUser.memberflag == null}">
@@ -163,25 +200,36 @@
                             	<input type="button" value="도서정보수정" onclick="location.href='BookServlet?command=book_update_form&isbn=${bookVo.isbn }';">
                            	</c:if>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     
-<script type="text/javascript" src="/resources/js/ratings.js"></script>    
+<script type="text/javascript" src="/resources/js/ratings.js"></script>
+
+<style>
+	.chat > li : hover {
+		cursor:pointer;
+	}
+</style>
+
 <script>
 
- 	var isbnValue = '${bookVO.isbn}';
+/* $(document).ready(function(){  */
+	
+
+	var isbnValue = '${bookVO.isbn}';
 	var ratingsUL = $(".chat");
 	
 	console.log("isbnValue : " + isbnValue);
 
 	showList(1);
 	function showList(page){
-		
+		console.log("ratingsService >> " + isbnValue + " : " + page);
 		ratingsService.getList({isbn:isbnValue, page: page||1 }, function(ratingsCnt, list){
-			
+			console.log("getList 실행 >> " + ratingsCnt);
 			if(page === -1) {
 				pageNumber = Math.ceil(ratingsCnt / 10.0);
 				showList(pageNum);
@@ -199,49 +247,50 @@
 				
 				str += "<li class='left clearfix' data-ratingsid='"+list[i].ratingsid +"'>";
 				str += "<div><div class='header'>";
-				str += "<strong class='primary-font'>"+ list[i].memberid +"</strong>";
+				str += "<strong class='primary-font'>"+ list[i].memberid +"</strong>&nbsp;&nbsp;";
 				str += "<strong class='primary-font'>"+ list[i].score +"</strong>";
 				str += "<small class='pull-right text-muted'>"+ ratingsService.displayTime(list[i].writedate) +"</small><br>";
 				str += "</div><p>"+ list[i].content +"</p>";
-				str += "<br><br></div></li>";
+				str += "</div></li>";
 			}
 			ratingsUL.html(str);
 			
-			showReplyPage(ratingsCnt);
+			showRatingsPage(ratingsCnt);
 			
 		}); //end function
 		
 	} //end showList
 	
 	var modal = $(".modal");
-	var modalInputReply = modal.find("input[name='reply']");
-	var modalInputReplyer = modal.find("input[name='replyer']");
-	var modalInputReplyDate = modal.find("input[name='replyDate']");
+	var modalInputContent = modal.find("input[name='content']");
+	var modalInputScore = modal.find("input[name='score']");
+	var modalInputMemberid = modal.find("input[name='memberid']");
+	var modalInputWriteDate = modal.find("input[name='writedate']");
 	
 	var modalRegisterBtn = $("#modalRegisterBtn");
 	var modalModBtn = $("#modalModBtn");
 	var modalRemoveBtn = $("#modalRemoveBtn");
 	var modalCloseBtn = $("#modalCloseBtn");
 	
-	var replyer = null;
+	/* var memberid = null; */
 	
 /* 	<sec:authorize access="isAuthenticated()">
-		replyer = '<sec:authentication property="principal.username" />';
+		memberid = '<sec:authentication property="principal.username" />';
 	</sec:authorize> */
 		
 	var csrfHeaderName = "${_csrf.headerName }";
 	var csrfTokenValue = "${_csrf.token }";
-	
-	//댓글창 보이기
-	$("#addReplyBtn").on("click", function(e){
 		
+	//댓글창 보이기
+	$("#addRatingsBtn").on("click", function(e){
+		/* e.preventDefault(); */
 		modal.find("input").val("");
-		modal.find("input[name='replyer']").val(replyer);
-		modalInputReplyDate.closest("div").hide();
+		/* modal.find("input[name='memberid']").val(memberid); */
+		modalInputWriteDate.closest("div").hide();
 		modal.find("button[id != 'modalCloseBtn']").hide();
 		modalRegisterBtn.show();
 		
-		/* modalInputReplyer.val("").removeAttr("readonly"); */
+		/* modalInputMemberid.val("").removeAttr("readonly"); */
 		$(".modal").modal("show");
 	});
 	
@@ -251,13 +300,15 @@
 	
 	//댓글 등록
 	modalRegisterBtn.on("click",function(e){
-		var reply = {
-				bno : bnoValue,
-				reply : modalInputReply.val(),
-				replyer : modalInputReplyer.val()
+		var ratings = {
+				isbn : isbnValue,
+				content : modalInputContent.val(),
+				score : modalInputScore.val(),
+				memberid : modalInputMemberid.val()
 		};
+		console.log(ratings);
 		
-		replyService.add(reply, function(result){
+		ratingsService.add(ratings, function(result){
 			alert(result);
 			modal.find("input").val();
 			modal.modal("hide");
@@ -268,15 +319,16 @@
 	
 	//댓글 조회 클릭 이벤트 처리
 	$(".chat").on("click","li",function(e){
-		var rno = $(this).data("rno");
-		//console.log("rno >> " + rno);
+		var ratingsid = $(this).data("ratingsid");
+		console.log("ratingsid >> " + ratingsid);
 		
-		replyService.get(rno, function(reply){
-			modalInputReply.val(reply.reply);
-			modalInputReplyer.val(reply.replyer).attr("readonly","readonly");
-			modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly","readonly");
+		ratingsService.get(ratingsid, function(ratings) {
+			modalInputContent.val(ratings.content);
+			modalInputScore.val(ratings.score);
+			modalInputMemberid.val(ratings.memberid).attr("readonly","readonly");
+			modalInputWriteDate.val(ratingsService.displayTime(ratings.writedate)).attr("readonly","readonly");
 			
-			modal.data("rno", reply.rno);
+			modal.data("ratingsid", ratings.ratingsid);
 			
 			modal.find("button[id != 'modalCloseBtn']").hide();
 			modalModBtn.show();
@@ -289,52 +341,53 @@
 	//댓글 수정
 	modalModBtn.on("click",function(e){
 
-		var originalReplyer = modalInputReplyer.val();
+		var originalMemberid = modalInputMemberid.val();
 		
-		var reply = {
-				rno: modal.data("rno"),
-				reply: modalInputReply.val(),
-				replyer: originalReplyer
+		var ratings = {
+				ratingsid: modal.data("ratingsid"),
+				content: modalInputContent.val(),
+				score: modalInputScore.val(),
+				memberid: originalMemberid
 		}
 		
-		if(!replyer) {
+		if(!memberid) {
 			alert("로그인후 수정 가능합니다.");
 			modal.modal("hide");
 			return;
 		}
 		
-		if(replyer != originalReplyer) {
+		if(memberid != originalMemberid) {
 			alert("자신이 작성한 댓글만 수정 가능합니다.");
 			modal.modal("hide");
 			return;
 		}
 		
-		replyService.update(reply, function(result){
+		ratingsService.update(ratings, function(result){
 			alert(result);
 			modal.modal("hide");
-			console.log("reply mod pageNum >> " + pageNum)
+			console.log("ratings mod pageNum >> " + pageNum)
 			showList(pageNum);
 		});
 	});
 	
 	//댓글 삭제
 	modalRemoveBtn.on("click",function(e){
-		var rno = modal.data("rno");
+		var ratingsid = modal.data("ratingsid");
 		
-		if(!replyer) {
+		if(!memberid) {
 			alert("로그인후 삭제 가능합니다.");
 			modal.modal("hide");
 			return;
 		}
 		
-		var originalReplyer = modalInputReplyer.val();
-		if(replyer != originalReplyer) {
+		var originalMemberid = modalInputMemberid.val();
+		if(memberid != originalMemberid) {
 			alert("자신이 작성한 댓글만 삭제 가능합니다.");
 			modal.modal("hide");
 			return;
 		}
 		
-		replyService.remove(rno, originalReplyer, function(result) {
+		ratingsService.remove(ratingsid, originalMemberid, function(result) {
 			alert(result);
 			modal.modal("hide");
 			showList(pageNum);
@@ -342,9 +395,9 @@
 	});
 	
 	var pageNum = 1;
-	var replyPageFooter = $(".panel-footer");
+	var ratingsPageFooter = $(".panel-footer");
 	
-	function showReplyPage(replyCnt){
+	function showRatingsPage(ratingsCnt){
 		
 		var endNum = Math.ceil(pageNum / 10.0) * 10;
 		var startNum = endNum - 9;
@@ -352,10 +405,10 @@
 		var prev = startNum != 1;
 		var next = false;
 		
-		if(endNum * 10 >= replyCnt) {
-			endNum = Math.ceil(replyCnt/10.0);
+		if(endNum * 10 >= ratingsCnt) {
+			endNum = Math.ceil(ratingsCnt/10.0);
 		}
-		if(endNum * 10 < replyCnt) {
+		if(endNum * 10 < ratingsCnt) {
 			next = true;
 		}
 		var str = "<ul class='pagination pull-right'>";
@@ -376,14 +429,14 @@
 		}
 		
 		str += "</ul>";
-		console.log("str >>> " + str);
+		/* console.log("str >>> " + str); */
 		
-		replyPageFooter.html(str);
+		ratingsPageFooter.html(str);
 		
 	}
 
 	//댓글 페이지 이벤트 처리
-	replyPageFooter.on("click", "li a", function(e){
+	ratingsPageFooter.on("click", "li a", function(e){
 		e.preventDefault();
 		
 		var targetPageNum = $(this).attr("href");
@@ -393,9 +446,10 @@
 		showList(pageNum);
 	});
 	
-	
-</script>
+/* });  */
 
+</script>
+<!-- 
 <script type="text/javascript">
 	$(document).ready(function(){
 		var operForm = $("#operForm");
@@ -410,8 +464,6 @@
 		});
 	});
 
-</script>    
+</script>   -->  
     
 <%@ include file = "../includes/footer.jsp"%>
-</body>
-</html>

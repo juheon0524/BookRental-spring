@@ -2,14 +2,49 @@
     pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인기도서조회</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/list.css">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
-    <title>인기도서조회</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+    <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 </head>
 <c:if test="${wishSu == 1}">
 		<script type="text/javascript">
@@ -54,7 +89,7 @@
 
                 <div class="shareContent">
                     <c:forEach var="book" items="${ bookPopularList }">
-                    <form class="listWrap">
+                    <div class="listWrap">
                         <div class="listImgBox">
 	                        <c:choose>
 								<c:when test="${empty book.bookimgurl }">
@@ -89,46 +124,118 @@
                        				</div>
 							    </c:otherwise>
 						</c:choose>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    </form>
+                    </div>
                 	</c:forEach>
-                	               	<ul class="bookListPage">
-						<li><c:choose>
-								<c:when test="${paging.page<=1}"> 
-					               [이전]&nbsp;
-					            </c:when>
-								<c:otherwise>
-									<a href="BookServlet?command=book_plist&page=${paging.page-1}">[이전]</a>&nbsp;
-			          			</c:otherwise>
-							</c:choose> <c:forEach var="a" begin="${paging.startPage}"
-								end="${paging.endPage}" step="1">
-								<c:choose>
-									<c:when test="${a==paging.page}"> 
-					                  [${a}]
-					               	</c:when>
-									<c:otherwise>
-										<a href="BookServlet?command=book_plist&page=${a}">[${a}]</a>&nbsp;
-			               			</c:otherwise>
-								</c:choose>
-							</c:forEach> <c:choose>
-								<c:when test="${paging.page>=paging.maxPage}"> 
-			             		  [다음]
-			            		</c:when>
-								<c:otherwise>
-									<a href="BookServlet?command=book_plist&page=${paging.page+1}">[다음]</a>
-								</c:otherwise>
-							</c:choose></li>
-					</ul>         	    
+                	
+                	<!-- 페이징 처리  -->
+					<div class="pull-right">
+					  <ul class="pagination">
+					  	
+					  	<c:if test="${pageMaker.prev}">
+					    	<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a></li>
+					    </c:if>
+					   
+					    <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+					    	<li class="page-item  ${pageMaker.cri.pageNum == num ? "active" : ""}" >
+					    		<a class="page-link" href="${num}">${num}</a>
+					    	</li>
+					    </c:forEach>
+					  
+					    <c:if test="${pageMaker.next}">
+					   	 <li class="page-item"><a class="page-link" href="${pageMaker.endPage+1 }">Next</a></li>
+					    </c:if>
+					  </ul>
+					</div>
+
+
+                    <!-- /페이징 처리  -->
+                    
+                    <form id="actionForm" action="/book/bookPopularList" method="get">
+                    	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+                    	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                    	<input type="hidden" name="type" value="${pageMaker.cri.type }">
+                    	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+                    </form>
+                	
+                	
                 </div>
             </div>
         </div>
     </div>
+    
+<script>
+	$(document).ready(function(){
+		var result = '<c:out value="${result}"/>';
+		//var result = "${result}";
+		
+		/* checkModal(result);
+		
+		history.replaceState({},null,null);
+		
+		//Modal 창
+		function checkModal(result){
+			if(result === "" || history.state ) {
+				return;
+			}
+			if(parseInt(result) > 0 ) {
+				$(".modal-body").html("게시글 " + parseInt(result) +" 번이 등록되었습니다.")
+			}
+			
+			$("#myModal").modal("show");
+		}
+		
+		//register 호출
+		$("#regBtn").on("click", function(){
+			self.location = "/board/register";
+		}); */
+		
+		//페이지 버튼 클릭 이동
+		var actionForm = $("#actionForm");
+		$(".page-item a").on("click",function(e){
+			e.preventDefault();
+			
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+ 			actionForm.submit(); 
+		});
+		
+		//조회하고 리스트 화면으로 이동할 때 기본 pagenum 유지
+		$(".move").on("click", function(e){
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='isbn' value='" + $(this).attr("href")+ "'>");
+			actionForm.attr("action", "/book/get");
+			actionForm.submit();
+		});
+		
+		//검색버튼 이벤트 처리
+/* 		var searchForm = $("#searchForm");
+		$("#searchForm button").on("click", function(e){
+			if(!searchForm.find("option:selected").val()){
+				alert("검색종류를 선택하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			serachForm.find("input[name='pageNum']").val("1");
+			e.prevendDefault();
+			
+			searchForm.submit();
+		}); */
+		
+		//selected check
+		var select = "${pageMaker.cri.type}";
+		if(select != ""){
+			$('#type option[value= '+ select + ']').prop("selected", true);
+		};
+		
+		
+		
+	});
+</script>       
+    
+    
+    
     <%@ include file = "../includes/footer.jsp"%>
 </body>
 </html>

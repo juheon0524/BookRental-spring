@@ -3,6 +3,7 @@ package com.ezen.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ezen.domain.Criterial;
@@ -69,13 +70,12 @@ public class BookController {
 	}
 
 	@GetMapping("/bookDetail")
-	public void bookDetail(String isbn, Criterial cri, Model model) {
+	public void bookDetail(String isbn, @ModelAttribute("cri")Criterial cri, Model model) {
 		
 		log.info("bookDetailView >> " + isbn + " : " + cri);
 
 		model.addAttribute("bookVO", bookService.get(isbn));
-//		model.addAttribute("ratingsList", ratingsService.getListWithPaging(cri, isbn));
-		model.addAttribute("ratingsList", ratingsService.getListPage(cri, isbn));
+//		model.addAttribute("ratingsList", ratingsService.getListPage(cri, isbn));
 		
 	}
 }

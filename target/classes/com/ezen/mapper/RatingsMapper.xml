@@ -8,7 +8,7 @@
 			select *
 			from ratings
 			where isbn = #{isbn }
-			order by score desc, writedate desc 
+			order by writedate desc, score desc 
 			limit #{cri.skip}, #{cri.amount} 	
 	</select>
 

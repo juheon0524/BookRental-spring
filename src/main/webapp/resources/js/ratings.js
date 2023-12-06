@@ -1,9 +1,9 @@
-console.log("Reply Module......");
+console.log("Ratings Module......");
 
 var ratingsService = (function() {
     
     function add(ratings, callback, error) {
-        // console.log("ratings ....................");
+        console.log("ratings add ....................");
         $.ajax({
             type : "post",
             url: "/ratings/new",
@@ -24,13 +24,13 @@ var ratingsService = (function() {
     }  // end add
 
     function getList(param, callback, error) {
+        console.log("ratings getList ....................");
         var isbn = param.isbn;
         var page = param.page || 1;
         $.ajax({
             type : 'get',
             url: "/ratings/pages/" + isbn + "/" + page,
             success : function(data, status, xhr) {
-                
                 if(callback) {
                     callback(data.ratingsCnt, data.list);
                 }
@@ -88,12 +88,14 @@ var ratingsService = (function() {
         $.ajax({
             type : 'get',
             url: "/ratings/" + ratingsid,
+            cache: false,
             success: function(result, status, xhr) {
                 if(callback) {
                     callback(result);
                 }
             },
             error: function(xhr, status, er) {
+                console.error('Error:', status, error);
                 if(error){
                     error(er);
                 }
