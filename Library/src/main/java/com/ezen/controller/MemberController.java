@@ -155,14 +155,14 @@ public class MemberController {
 			return "redirect:/member/pwCheck";
 	}   
 	
-	
+	//비밀번호변경
 	@PostMapping("/pwModify")
 	public String pwCheck(String passcode, RedirectAttributes rttr, Principal principal) {
 		String username = principal.getName();
 		String pw = passwordencoder.encode(passcode);
 		
 		service.updatePW(pw, username);
-		return "redirect:/bookMainView";
+		return "redirect:/";
 	}   
 	
 }

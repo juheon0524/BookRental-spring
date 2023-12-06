@@ -82,7 +82,7 @@
 					</li>
 					<li>열린마당
 						<ul>
-							<li><a href="#">공지사항</a></li>
+							<li><a href="/board/list">공지사항</a></li>
 							<li><a href="#">Q&A</a></li>
 							<li><a href="#">독후감</a></li>
 						</ul>

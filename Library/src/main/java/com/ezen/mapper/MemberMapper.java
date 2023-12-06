@@ -1,7 +1,6 @@
 package com.ezen.mapper;
 
 import com.ezen.domain.MemberVO;
-import com.ezen.domain.MemberVO;
 
 public interface MemberMapper {
 
