@@ -3,13 +3,13 @@
 ```
 ## 📚 목차 📚
 
-1. [📂 PPT](#-PPT-)
+1. [📂 PPT](#-ppt-)
 2. [📖 프로젝트 소개](#-도서대여-프로젝트-)
-3. [🔧 Development Environment](#development-environment)
-4. [💡 기획 의도](#기획-의도)
-5. [📋 개발 일지](#개발-일지)
+3. [🔧 Development Environment](#-development-environment-)
+4. [💡 기획 의도](#-기획-의도-)
+5. [📋 개발 일지](#-개발-일지-)
 6. [🔨 사용 기술](#-사용-기술-)
-7. [📊 Diagram](#-다이어그램-)
+7. [📊 Diagram](#-diagram-)
 8. [📝 기능 설명](#-기능-설명-)
 
 
